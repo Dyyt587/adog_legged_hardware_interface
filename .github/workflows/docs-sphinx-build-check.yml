@@ -1,0 +1,17 @@
+name: "Docs Check"
+on:
+  pull_request:
+  push:
+    branches:
+      - $ros_distro$
+  schedule:
+    # Run every day to detect flakiness and broken dependencies
+    - cron: '23 5 * * *'
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ros-controls/control.ros.org-deployment-scripts@master
+      with:
+        install_extensions: false

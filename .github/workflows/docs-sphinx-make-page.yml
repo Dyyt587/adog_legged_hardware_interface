@@ -1,0 +1,17 @@
+name: "Build & Deploy Page"
+on:
+  push:
+    branches:
+      - $ros_distro$
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ros-controls/control.ros.org-deployment-scripts@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        create_readme: true
+        install_extensions: false
+        deploy: true
+        source_dir: 'docs'
